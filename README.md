@@ -7,7 +7,7 @@ This gem is to communicate through Wrike.com API
 
 Add to your Gemfile:
 
-<pre><code>gem 'wrike', :github => 'morshedalam/wrike', :branch => 'api-v3'</code></pre>
+<pre><code>gem 'wrike', :github => 'morshedalam/wrike3'</code></pre>
 
 Then run:
 

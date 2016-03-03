@@ -4,7 +4,7 @@ require 'shoulda/tasks'
 
 task :default => ["test:units"]
 
-desc "Run basic tests"
+desc 'Run basic tests'
 Rake::TestTask.new("test:units") { |t|
   t.pattern = 'test/**/*_test.rb'
   t.verbose = true
