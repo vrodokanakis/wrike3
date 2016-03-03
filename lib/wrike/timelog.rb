@@ -1,5 +1,5 @@
 module Wrike
-  class TimeLog
+  class Timelog
     include Wrike::UrlHelper
 
     def initialize(wrike)

@@ -38,8 +38,8 @@ module Wrike
       @task ||= Wrike::Task.new(self)
     end
 
-    def time_log
-      @time_log ||= Wrike::TimeLog.new(self)
+    def timelog
+      @timelog ||= Wrike::Timelog.new(self)
     end
 
     def user

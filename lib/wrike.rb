@@ -14,7 +14,7 @@ require 'wrike/contact'
 require 'wrike/folder'
 require 'wrike/task'
 require 'wrike/comment'
-require 'wrike/time_log'
+require 'wrike/timelog'
 require 'wrike/attachment'
 
 require 'wrike/version'
