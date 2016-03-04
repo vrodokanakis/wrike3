@@ -1,13 +1,14 @@
 # -*- encoding: utf-8 -*-
+require File.expand_path('../lib/wrike3/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name    = %q{wrike3}
-  s.version = '0.3.0'
+  s.name    = 'wrike3'
+  s.version = Wrike3::VERSION
 
-  s.homepage = %q{http://github.com/morshedalam/wrike3}
+  s.homepage = 'http://github.com/morshedalam/wrike3'
   s.authors  = ['Morshed Alam']
-  s.date     = %q{2016-02-20}
-  s.email    = %q{morshed201@gmail.com}
+  s.date     = '2016-02-20'
+  s.email    = 'morshed201@gmail.com'
 
   s.description = 'Wrike3 is a Ruby client for the Wrike API V3.'
   s.summary     = 'Wrike3 is a Ruby client for the Wrike API V3.'

@@ -1,4 +1,4 @@
-module Wrike
+module Wrike3
   class Error
     attr_accessor :error
 
@@ -8,17 +8,17 @@ module Wrike
             when 200
               # Not an error
             when 404, 402, 403
-              Wrike::NotFound.new(options[:message])
+              Wrike3::NotFound.new(options[:message])
             when 400
-              Wrike::BadRequest.new(options[:message])
+              Wrike3::BadRequest.new(options[:message])
             when 401
-              Wrike::Unauthorized.new(options[:message])
+              Wrike3::Unauthorized.new(options[:message])
             when 402
-              Wrike::RequestFailed.new(options[:message])
+              Wrike3::RequestFailed.new(options[:message])
             when 500, 502, 503, 504
-              Wrike::ServerError.new(options[:message])
+              Wrike3::ServerError.new(options[:message])
             else
-              Wrike::ErrorBase.new(options[:message])
+              Wrike3::ErrorBase.new(options[:message])
           end
     end
 

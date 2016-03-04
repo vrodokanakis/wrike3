@@ -1,7 +1,11 @@
-module Wrike
-  module UrlHelper
+module Wrike3
+  module Common
+    attr_accessor :wrike
+
+    private
+
     def api_url(path)
-      "#{@wrike.base_url}/#{path}"
+      "#{wrike.base_url}/#{path}"
     end
 
     def nested_path(path = '', type = nil, id = nil)
