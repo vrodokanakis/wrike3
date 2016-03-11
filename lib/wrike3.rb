@@ -7,6 +7,7 @@ require 'wrike3/common'
 require 'wrike3/utils'
 
 require 'wrike3/base'
+require 'wrike3/token'
 require 'wrike3/account'
 require 'wrike3/user'
 require 'wrike3/workflow'

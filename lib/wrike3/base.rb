@@ -50,13 +50,17 @@ module Wrike3
       @workflow ||= Wrike3::Workflow.new(self)
     end
 
+    def token
+      @token ||= Wrike3::Token.new(self)
+    end
+
     def headers(header = {})
       header.merge!('Authorization' => "Bearer #{Wrike3.access_token}")
       header
     end
 
-    def execute(method, url, parameters={})
-      response = HTTParty.send(method.to_s, url, query: parameters, headers: headers)
+    def execute(method, url, parameters={}, header = headers)
+      response = HTTParty.send(method.to_s, url, query: parameters, headers: header)
       response.parsed_response
     end
   end
