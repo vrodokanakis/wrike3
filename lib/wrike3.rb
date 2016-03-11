@@ -19,11 +19,7 @@ require 'wrike3/attachment'
 
 def Wrike3(options={})
   # Settings
-  options[:scope] = Wrike3.scope if Wrike3.scope
-  options[:client_id] = Wrike3.client_id if Wrike3.client_id
   options[:access_token] = Wrike3.access_token if Wrike3.access_token
-  options[:client_secret] = Wrike3.client_secret if Wrike3.client_secret
-
   # Initialize wrike object
   Wrike3::Base.new(options)
 end
