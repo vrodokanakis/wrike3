@@ -13,7 +13,7 @@ module Wrike3
           :client_secret => client_secret,
           :refresh_token => refresh_token
       }
-      wrike.execute(:post, "#{Wrike3.protocol}://#{Wrike3.api_host}/oauth2/token", parameters, {})
+      wrike.execute(:post, "#{Wrike3.protocol}://#{Wrike3.api_host}/oauth2/token", parameters, {}, false)
     end
 
   end

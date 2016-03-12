@@ -54,13 +54,14 @@ module Wrike3
       @token ||= Wrike3::Token.new(self)
     end
 
-    def headers(header = {})
-      header.merge!('Authorization' => "Bearer #{Wrike3.access_token}")
-      header
+    def auth_headers(options = {})
+      options.merge!('Authorization' => "Bearer #{Wrike3.access_token}")
+      options
     end
 
-    def execute(method, url, parameters={}, header = headers)
-      response = HTTParty.send(method.to_s, url, query: parameters, headers: header)
+    def execute(method, url, parameters = {}, request_headers = {}, include_auth_header = true)
+      request_headers = self.auth_headers(request_headers) if include_auth_header
+      response = HTTParty.send(method.to_s, url, query: parameters, headers: request_headers)
       response.parsed_response
     end
   end
