@@ -10,9 +10,10 @@ Gem::Specification.new do |s|
   s.date     = '2016-02-20'
   s.email    = 'morshed201@gmail.com'
 
-  s.description = 'Wrike3 is a Ruby client for the Wrike API V3.'
-  s.summary     = 'Wrike3 is a Ruby client for the Wrike API V3.'
+  s.description = 'Ruby client to access Wrike API V3.'
+  s.summary     = 'Wrike API extension'
 
+  s.license       = 'MIT'
   s.rubyforge_project = 'wrike3'
   s.extra_rdoc_files  = ['README.md', 'LICENSE']
   s.rdoc_options      = ['--inline-source', '--charset=UTF-8']
@@ -22,9 +23,8 @@ Gem::Specification.new do |s|
   s.require_paths    = ['lib']
   s.rubygems_version = '1.9.3'
 
-  s.add_runtime_dependency(%q<httparty>, ['~> 0.13.7'])
-  s.add_runtime_dependency(%q<mime-types>, ['~> 2.99', '>= 2.99.1'])
-  %w(shoulda mocha).each do |dep|
-    s.add_development_dependency dep
-  end
+  s.add_runtime_dependency('httparty', '~> 0.13.7')
+  s.add_runtime_dependency('mime-types', '~> 2.99', '>= 2.99.1')
+  s.add_runtime_dependency('shoulda', '~> 3.5')
+  s.add_runtime_dependency('mocha', '~> 1.1')
 end
