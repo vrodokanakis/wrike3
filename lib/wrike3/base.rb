@@ -9,9 +9,13 @@ module Wrike3
       Wrike3.access_token = options.fetch(:access_token) { '' }
     end
 
+    def site_url
+      "#{Wrike3.protocol}://#{Wrike3.api_host}"
+    end
+
     # Returns the base url used in all Wrike API calls
     def base_url
-      "#{Wrike3.protocol}://#{Wrike3.api_host}/api/#{Wrike3.api_version}"
+      "#{site_url}/api/#{Wrike3.api_version}"
     end
 
     def account
