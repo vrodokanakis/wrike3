@@ -65,8 +65,17 @@ module Wrike3
 
     def execute(method, url, parameters = {}, request_headers = {}, include_auth_header = true)
       request_headers = self.auth_headers(request_headers) if include_auth_header
-      response = HTTParty.send(method.to_s, url, query: parameters, headers: request_headers)
+      response = HTTParty.send(method.to_s, build_query_with_url(url, parameters), headers: request_headers)
       response.parsed_response
+    end
+
+    private
+
+    def build_query_with_url(url, parameters = {})
+      query = []
+      parameters.each { |item| query << "#{item.first.to_s}=#{item.last.to_s}" }
+      url = "#{url}?#{query.join('&')}" if query.any?
+      URI.parse(URI.encode(url))
     end
   end
 
