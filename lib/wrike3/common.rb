@@ -13,7 +13,7 @@ module Wrike3
       path
     end
 
-    def encode_params(parameters = {})
+    def to_j(parameters = {})
       parameters.each do |item|
         if item.last.is_a?(Hash) || item.last.is_a?(Array)
           parameters[item.first.to_s] = item.last.to_json

@@ -12,23 +12,22 @@ module Wrike3
 
     # Get folder data
     def details(ids, params={})
-      wrike.execute(:get, api_url("folders/#{ids}"), encode_params(params))
+      wrike.execute(:get, api_url("folders/#{ids}"), to_j(params))
     end
 
     # create a folder
     def create(id, params = {})
-      wrike.execute(:post, api_url("/folders/#{id}/folders"), encode_params(params))
+      wrike.execute(:post, api_url("/folders/#{id}/folders"), to_j(params))
     end
 
     # Update a folder
     def update(id, params = {})
-      wrike.execute(:put, api_url("folders/#{id}"), encode_params(params))
+      wrike.execute(:put, api_url("folders/#{id}"), to_j(params))
     end
 
     # Delete folders and all descendants
     def delete(id, params={})
-      wrike.execute(:delete, api_url("folders/#{id}"), encode_params(params))
+      wrike.execute(:delete, api_url("folders/#{id}"), to_j(params))
     end
-
   end
 end
