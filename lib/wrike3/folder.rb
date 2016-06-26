@@ -16,8 +16,9 @@ module Wrike3
     end
 
     # create a folder
-    def create(id, params = {})
-      wrike.execute(:post, api_url("/folders/#{id}/folders"), to_j(params))
+    def create(folder_id = nil, params = {})
+      wrike_url = "folders#{(folder_id.present? ? "/#{folder_id}/folders" : '')}"
+      wrike.execute(:post, api_url(wrike_url), to_j(params))
     end
 
     # Update a folder
