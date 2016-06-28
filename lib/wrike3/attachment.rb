@@ -6,29 +6,29 @@ module Wrike3
       @wrike = wrike
     end
 
-    def list(attachable_type = nil, attachable_id = nil, options={})
-      wrike.execute(:get, api_url(nested_path('attachments', attachable_type, attachable_id)), options)
+    def list(attachable_type = nil, attachable_id = nil, params = {})
+      wrike.execute(:get, api_url(nested_path('attachments', attachable_type, attachable_id)), params)
     end
 
     # Get attachment details
-    def details(id, options={})
-      wrike.execute(:get, api_url("attachments/#{id}"), options)
+    def details(id, params = {})
+      wrike.execute(:get, api_url("attachments/#{id}"), params)
     end
     
     # Upload attachment for specified task
-    def upload(attachable_type, attachable_id, stream, options={})
+    def upload(attachable_type, attachable_id, stream)
       body, headers = http_multipart_data({:stream => stream})
       wrike.execute(:post, api_url(nested_path('attachments', attachable_type, attachable_id)), body, headers)
     end
 
     # Get file binary stream
-    def download(id, options={})
-      wrike.execute(:get, api_url("attachments/#{id}/download"), options)
+    def download(id, params = {})
+      wrike.execute(:get, api_url("attachments/#{id}/download"), params)
     end
 
     # Delete attachments
-    def delete(id, options={})
-      wrike.execute(:delete, api_url("attachments/#{id}"), options)
+    def delete(id, params = {})
+      wrike.execute(:delete, api_url("attachments/#{id}"), params)
     end
   end
 end

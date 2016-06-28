@@ -6,12 +6,12 @@ module Wrike3
       @wrike = wrike
     end
 
-    def details(id, options = {})
-      wrike.execute(:get, api_url("users/#{id}"), options)
+    def details(id, params = {})
+      wrike.execute(:get, api_url("users/#{id}"), params)
     end
 
-    def update(id, data = {}, options = {})
-      wrike.execute(:put, api_url("users/#{id}"), options.merge(data))
+    def update(id, params = {})
+      wrike.execute(:put, api_url("users/#{id}"), params)
     end
   end
 end

@@ -6,12 +6,12 @@ module Wrike3
       @wrike = wrike
     end
 
-    def list(options = {})
-      wrike.execute(:get, api_url('contacts'), options)
+    def list(params = {})
+      wrike.execute(:get, api_url('contacts'), params)
     end
 
-    def details(ids, options = {})
-      wrike.execute(:get, api_url("contacts/#{ids}"), options)
+    def details(ids, params = {})
+      wrike.execute(:get, api_url("contacts/#{ids}"), params)
     end
   end
 end

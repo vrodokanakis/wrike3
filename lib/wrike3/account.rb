@@ -7,17 +7,17 @@ module Wrike3
     end
 
     # Get account list
-    def list(options = {})
-      wrike.execute(:get, api_url('accounts'), options)
+    def list(params = {})
+      wrike.execute(:get, api_url('accounts'), params)
     end
 
-    def details(id, options={})
-      wrike.execute(:get, api_url("accounts/#{id}"), options)
+    def details(id, params = {})
+      wrike.execute(:get, api_url("accounts/#{id}"), params)
     end
 
     # Update account
-    def update(id, data = {}, options={})
-      wrike.execute(:put, api_url("accounts/#{id}"), options.merge(data))
+    def update(id, params = {})
+      wrike.execute(:put, api_url("accounts/#{id}"), params)
     end
   end
 end

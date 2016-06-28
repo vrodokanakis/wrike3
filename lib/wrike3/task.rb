@@ -7,27 +7,27 @@ module Wrike3
     end
 
     # Get task list
-    def list(taskable_type = nil, taskable_id = nil, options = {})
-      wrike.execute(:get, api_url(nested_path('tasks', taskable_type, taskable_id)), options)
+    def list(taskable_type = nil, taskable_id = nil, params = {})
+      wrike.execute(:get, api_url(nested_path('tasks', taskable_type, taskable_id)), params)
     end
 
-    def details(id, options={})
-      wrike.execute(:get, api_url("tasks/#{id}"), options)
+    def details(id, params = {})
+      wrike.execute(:get, api_url("tasks/#{id}"), params)
     end
 
     # Add a new task
-    def add(folder_id, data = {}, options={})
-      wrike.execute(:post, api_url("folders/#{folder_id}/tasks"), options.merge(data))
+    def add(folder_id, params = {})
+      wrike.execute(:post, api_url("folders/#{folder_id}/tasks"), params)
     end
 
     # Update a task
-    def update(id, data = {}, options={})
-      wrike.execute(:put, api_url("tasks/#{id}"), options.merge(data))
+    def update(id, params = {})
+      wrike.execute(:put, api_url("tasks/#{id}"), params)
     end
 
     # Delete an existing task
-    def delete(id, options={})
-      wrike.execute(:delete, api_url("tasks/#{id}"), options)
+    def delete(id, params = {})
+      wrike.execute(:delete, api_url("tasks/#{id}"), params)
     end
 
   end
