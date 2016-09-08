@@ -4,7 +4,6 @@ require 'mime/types'
 
 require 'wrike3/error'
 require 'wrike3/common'
-require 'wrike3/utils'
 
 require 'wrike3/base'
 require 'wrike3/token'

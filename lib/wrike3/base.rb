@@ -2,9 +2,9 @@ module Wrike3
   class Base
     def initialize(options={})
       # API settings
-      Wrike3.api_version = options.fetch(:api_version) { 'v3' }
-      Wrike3.protocol = options.fetch(:protocol) { 'https' }
-      Wrike3.api_host = options.fetch(:api_host) { 'www.wrike.com' }
+      Wrike3.api_version  = options.fetch(:api_version) { 'v3' }
+      Wrike3.protocol     = options.fetch(:protocol) { 'https' }
+      Wrike3.api_host     = options.fetch(:api_host) { 'www.wrike.com' }
       # Access settings
       Wrike3.access_token = options.fetch(:access_token) { '' }
     end
@@ -58,9 +58,12 @@ module Wrike3
       @token ||= Wrike3::Token.new(self)
     end
 
-    def execute(method, url, parameters = {}, request_headers = {}, include_auth_header = true)
+    def execute(method, url, parameters = {}, request_headers = {}, include_auth_header = true, body = nil)
       request_headers = auth_headers(request_headers) if include_auth_header
-      response = HTTParty.send(method.to_s, url, {:query => to_j(parameters), headers: request_headers})
+      params          = {:query => to_j(parameters), headers: request_headers}
+      params[:body]   = body if body.present?
+
+      response = HTTParty.send(method.to_s, url, params)
       response.parsed_response
     end
 
