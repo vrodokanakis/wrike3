@@ -59,9 +59,12 @@ module Wrike3
     end
 
     def execute(method, url, parameters = {}, request_headers = {}, include_auth_header = true, body = nil)
+      debug_output = parameters.delete(:debug_output) if parameters[:debug_output].present?
+
       request_headers = auth_headers(request_headers) if include_auth_header
       params          = {:query => to_j(parameters), headers: request_headers}
       params[:body]   = body if body.present?
+      params[:debug_output] = debug_output if debug_output.present?
 
       response = HTTParty.send(method.to_s, url, params)
       response.parsed_response
