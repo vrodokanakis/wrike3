@@ -60,14 +60,34 @@ module Wrike3
 
     def execute(method, url, parameters = {}, request_headers = {}, include_auth_header = true, body = nil)
       debug_output = parameters.delete(:debug_output) if parameters[:debug_output].present?
+      paginate     = parameters.delete(:paginate) if parameters[:paginate].present?
 
-      request_headers = auth_headers(request_headers) if include_auth_header
-      params          = {:query => to_j(parameters), headers: request_headers}
-      params[:body]   = body if body.present?
+      request_headers       = auth_headers(request_headers) if include_auth_header
+
+      parameters[:pageSize] = 1000 if paginate
+      params                = { query: to_j(parameters), headers: request_headers }
+      params[:body]         = body if body.present?
       params[:debug_output] = debug_output if debug_output.present?
 
-      response = HTTParty.send(method.to_s, url, params)
-      response.parsed_response
+      response        = HTTParty.send(method.to_s, url, params)
+      next_page_token = response.parsed_response["nextPageToken"]
+
+      if response.parsed_response["error"].present?
+        raise ApiError.new, response.parsed_response["errorDescription"]
+      end
+
+      responses = [response]
+
+      while (next_page_token.present?)
+        params[:query].merge!(nextPageToken: next_page_token)
+
+        response = HTTParty.send(method.to_s, url, params)
+        responses << response
+
+        next_page_token = response.parsed_response["nextPageToken"]
+      end
+
+      responses.map { |response| response["data"] if response["data"].present? }.flatten.compact
     end
 
     private
@@ -101,4 +121,6 @@ module Wrike3
 
     alias :config :configure
   end
+
+  class ApiError < StandardError; end
 end
