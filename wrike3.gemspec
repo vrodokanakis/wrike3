@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.require_paths    = ['lib']
   s.rubygems_version = '1.9.3'
 
-  s.add_runtime_dependency('httparty', '~> 0.13.7')
+  s.add_runtime_dependency('httparty', '~> 0.14.0')
   s.add_runtime_dependency('mime-types')
   s.add_runtime_dependency('shoulda', '~> 3.5')
   s.add_runtime_dependency('mocha', '~> 1.1')
